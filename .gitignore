@@ -1,3 +1,5 @@
+#VS Code 
+BuildingEscape/.vscode/ipch
 # Visual Studio 2015 user specific files
 BuildingEscape/.vs/
 
@@ -75,3 +77,5 @@ BuildingEscape/Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 BuildingEscape/DerivedDataCache/*
+# Starter Content
+BuildingEscape/Content/StarterContent
