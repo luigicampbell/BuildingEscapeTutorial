@@ -2,6 +2,9 @@
 
 
 #include "OpenDoor.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
+#include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
@@ -19,16 +22,24 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
+  ActorThatOpens = GetWorld() -> GetFirstPlayerController() -> GetPawn();
 	// ...
-	
 }
-
+void UOpenDoor::OpenDoor()
+{
+	AActor* Owner = GetOwner();
+  FRotator NewRotation = FRotator(0.0f, -60.0f, 0.0f);
+  Owner -> SetActorRotation(NewRotation);
+}
 
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
+  if( PressurePlate -> IsOverlappingActor(ActorThatOpens) )
+  {
+    OpenDoor();
+  }
 	// ...
 }
 
